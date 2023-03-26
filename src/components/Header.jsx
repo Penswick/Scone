@@ -56,7 +56,7 @@ const Header = () => {
           <>
             <div className="dropdown">
               <button className="dropdown-toggle">
-                <AiOutlineUser size={40} />
+                <AiOutlineUser size={30} />
               </button>
               <div className="dropdown-menu">
                 <Link to="/fave">
