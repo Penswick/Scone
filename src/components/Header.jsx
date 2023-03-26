@@ -55,14 +55,14 @@ const Header = () => {
         {user ? (
           <>
             <div className="dropdown">
-              <button className="dropdown-toggle">
-                <AiOutlineUser size={30} />
+              <button className="dropdown__toggle">
+                <AiOutlineUser className="user__icon" size={30} />
               </button>
-              <div className="dropdown-menu">
+              <div className="dropdown__menu">
                 <Link to="/fave">
-                  <button className="dropdown-item">Favorites</button>
+                  <button className="dropdown__item">Favorites</button>
                 </Link>
-                <button className="dropdown-item" onClick={handleLogout}>
+                <button className="dropdown__item" onClick={handleLogout}>
                   Log out
                 </button>
               </div>
