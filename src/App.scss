@@ -177,6 +177,27 @@ html {
 	}
 }
 
+.pagination {
+	display: inline-block;
+  
+	.pagination button {
+	  color: black;
+	  float: left;
+	  padding: 8px 16px;
+	  text-decoration: none;
+	  background: none;
+	  border: none;
+	  cursor: pointer;
+	  // Add any other styles you'd like for the buttons here
+	}
+  
+	.pagination .active {
+	  // Add any styles you'd like for the active button here
+	}
+  }
+  
+  
+
 label {
 	font-weight: bold;
 	margin-bottom: 5px;

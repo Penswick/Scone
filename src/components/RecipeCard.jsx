@@ -9,10 +9,10 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { BsShare } from 'react-icons/bs';
 
 
-const RecipeCard = () => {
+const RecipeCard = ({ currentPage, recipesPerPage, onPageChange }) => {
+  const auth = getAuth();
   const [recipes, setRecipes] = useState([]);
   const { favorites, setFavorites } = useContext(FavoritesContext);
-  const auth = getAuth();
   const [user] = useAuthState(auth);
   const [showSharePopup, setShowSharePopup] = useState(false);
   const [currentRecipeUrl, setCurrentRecipeUrl] = useState('');
@@ -95,7 +95,7 @@ const RecipeCard = () => {
       )}
   
       <div className='recipe__card-container'>
-        {recipes.map((recipe, index) => (
+      {recipes.slice((currentPage - 1) * recipesPerPage, currentPage * recipesPerPage).map((recipe, index) => ( 
           <div key={index}>
             <div className='recipe__card'>
               <Link to={`/recipe/${recipe.id}`}>
@@ -121,6 +121,17 @@ const RecipeCard = () => {
           </div>
         ))}
       </div>
+      <div className="pagination">
+        {Array.from({ length: Math.ceil(recipes.length / recipesPerPage) }, (_, i) => (
+          <button
+            key={i + 1}
+              className={currentPage === i + 1 ? 'active' : ''}
+              onClick={() => onPageChange(i + 1)}>
+            {i + 1}
+          </button>
+        ))}
+    </div>
+
     </div>
   );
 };
