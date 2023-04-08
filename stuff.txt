@@ -1,0 +1,28 @@
+  .card__title {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 700px;
+  }
+  .card__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 700px;
+  }
+  .card__instructions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 700px;
+  }
+  .card__ingredients {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 700px;
+  }

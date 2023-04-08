@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div>
       <Header />
-        <div className="recipe-card-container">
+        <div className="home__recipe-container">
           <RecipeCard />
         </div>
     </div>

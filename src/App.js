@@ -5,6 +5,7 @@ import RecipePage from './pages/RecipePage';
 import SearchPage from './pages/SearchPage';
 import Login from './pages/Login';
 import Fave from './pages/Fave';
+import RecipeSubmit from './components/RecipeSubmit';
 import { FavoritesProvider } from './components/FavoritesContext';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/recipe/:id" element={<RecipePage />} />
           <Route path="/search/:query" element={<SearchPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/recipe-submit" element={<RecipeSubmit />} />
         </Routes>
       </FavoritesProvider>
     </Router>

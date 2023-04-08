@@ -62,6 +62,9 @@ const Header = () => {
                 <Link to="/fave">
                   <button className="dropdown__item">Favorites</button>
                 </Link>
+                <Link to="/recipe-submit">
+                  <button className="dropdown__item">Submit a Recipe</button>
+                </Link>
                 <button className="dropdown__item" onClick={handleLogout}>
                   Log out
                 </button>

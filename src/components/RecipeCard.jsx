@@ -5,6 +5,9 @@ import { getAuth } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import FavoritesContext from '../components/FavoritesContext';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { BsShare } from 'react-icons/bs';
+
 
 const RecipeCard = () => {
   const [recipes, setRecipes] = useState([]);
@@ -108,10 +111,10 @@ const RecipeCard = () => {
               </Link>
               <div className="favshare__btns">
                 <button onClick={() => handleFaveClick(recipe)}>
-                  {favorites.some((fav) => fav.id === recipe.id) ? 'Unfavorite' : 'Favorite'}
+                  <AiOutlineHeart size={50} color={favorites.some((fav) => fav.id === recipe.id) ? 'red' : 'gray'} />
                 </button>
                 <button onClick={() => handleShareClick(recipe)}>
-                  Share
+                  <BsShare size={50} />
                 </button>
               </div>
             </div>

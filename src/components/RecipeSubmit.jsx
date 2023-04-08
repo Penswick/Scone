@@ -4,6 +4,7 @@ import { getStorage, ref as firebaseStorageRef, uploadBytes, getDownloadURL } fr
 import { app } from '../firebase';
 import '../App.scss';
 import ImageUpload from './ImageUpload';
+import Header from './Header';
 
 const database = getDatabase(app);
 const storage = getStorage(app);
@@ -38,6 +39,9 @@ const RecipeSubmit = () => {
 
   return (
     <div className='recipe__submission__form'>
+    <div className="header">
+      <Header/>
+    </div>
       <form onSubmit={handleSubmit}>
         <div className='card__title'>
           <label htmlFor='title'>Title</label>
