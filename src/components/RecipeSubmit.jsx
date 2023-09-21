@@ -1,8 +1,10 @@
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import '../App.scss';
 import { useState } from 'react';
 import { getDatabase, push, ref, update } from 'firebase/database';
 import { getStorage, ref as firebaseStorageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { app } from '../firebase';
-import '../App.scss';
 import ImageUpload from './ImageUpload';
 import Header from './Header';
 
@@ -38,10 +40,9 @@ const RecipeSubmit = () => {
   };
 
   return (
-    <div className='recipe__submission__form'>
-    <div className="header">
+  <>
       <Header/>
-    </div>
+    <div className='recipe__submission__form'>
       <form onSubmit={handleSubmit}>
         <div className='card__title'>
           <label htmlFor='title'>Title</label>
@@ -49,20 +50,21 @@ const RecipeSubmit = () => {
         </div>
         <div className='card__description'>
           <label htmlFor='description'>Description</label>
-          <textarea id='description' value={description} onChange={(e) => setDescription(e.target.value)} />
+          <ReactQuill theme="snow" value={description} onChange={setDescription}  />
         </div>
         <div className='card__ingredients'>
           <label htmlFor='ingredients'>Ingredients</label>
-          <textarea id='ingredients' value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
+          <ReactQuill theme="snow" value={ingredients} onChange={setIngredients}  />
         </div>
         <div className='card__instructions'>
           <label htmlFor='instructions'>Instructions</label>
-          <textarea id='instructions' value={instructions} onChange={(e) => setInstructions(e.target.value)} />
+          <ReactQuill theme="snow" value={instructions} onChange={setInstructions}  />
         </div>
         <ImageUpload image={image} onFileChange={onFileChange} />
         <button type='submit'>Submit</button>
       </form>
     </div>
+    </>
   );
 };
 

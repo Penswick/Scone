@@ -5,7 +5,7 @@ import '../App.scss';
 
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const recipesPerPage = 2;
+  const recipesPerPage = 8;
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);

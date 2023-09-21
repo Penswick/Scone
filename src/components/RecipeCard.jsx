@@ -105,9 +105,7 @@ const RecipeCard = ({ currentPage, recipesPerPage, onPageChange }) => {
                 <div className="recipe__card-title">
                   <h2>{recipe.title}</h2>
                 </div>
-                <div className="recipe__card-description">
-                  <p>{recipe.description}</p>
-                </div>
+
               </Link>
               <div className="favshare__btns">
                 <button onClick={() => handleFaveClick(recipe)}>
