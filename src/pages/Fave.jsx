@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import FavoritesContext from '../components/FavoritesContext';
 import '../App.scss';
 import Header from '../components/Header';
-import { getDatabase, ref, remove } from 'firebase/database';  // <-- Add this line
-import { AiOutlineHeart } from 'react-icons/ai'; // <-- Add this line
-import { getAuth } from 'firebase/auth';  // <-- Add this line
-import { useAuthState } from 'react-firebase-hooks/auth';  // <-- Add this line
+import { getDatabase, ref, remove } from 'firebase/database';  
+import { AiOutlineHeart } from 'react-icons/ai'; 
+import { getAuth } from 'firebase/auth'; 
+import { useAuthState } from 'react-firebase-hooks/auth';  
 
 
 const Fave = () => {
   const { favorites, setFavorites } = useContext(FavoritesContext);
-  const auth = getAuth();  // <-- Add this line
-  const [user] = useAuthState(auth);  // <-- Add this line
+  const auth = getAuth();  
+  const [user] = useAuthState(auth);  
   
-  const handleFaveClick = async (favorite) => {  // <-- Add this function
+  const handleFaveClick = async (favorite) => {  
     if (!user) {
       alert('Please login to remove a favorite.');
       return;
@@ -41,7 +41,7 @@ const Fave = () => {
                 <img src={favorite.image} alt={favorite.title} />
               </div>
             </Link>
-            <button onClick={() => handleFaveClick(favorite)}>  {/* Add this button */}
+            <button onClick={() => handleFaveClick(favorite)}>  
               <AiOutlineHeart size={30} color={favorites.some((fav) => fav.id === favorite.id) ? 'red' : 'gray'} />
             </button>
           </div>

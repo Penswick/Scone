@@ -1,17 +1,39 @@
 import '../App.scss';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../images/Logo.png'; 
 import { useNavigate, Link } from 'react-router-dom';
 import { getAuth } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import { AiOutlineUser } from 'react-icons/ai';
+import { ref as firebaseRef, child, get } from 'firebase/database';
+import { database } from '../firebase.js';
 
 const Header = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState('');
+  const [username, setUsername] = useState('');
+  const [avatarUrl, setAvatarUrl] = useState(null); 
   const auth = getAuth();
   const [user] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      const fetchUserData = async () => {
+        const userRef = child(firebaseRef(database), 'users/' + user.uid);
+        const snapshot = await get(userRef);
+        if (snapshot.exists()) {
+          setUsername(snapshot.val().username);
+          setAvatarUrl(snapshot.val().avatar); 
+        }
+      };
+      
+      fetchUserData();
+    } else {
+      setUsername('');
+      setAvatarUrl(null); 
+    }
+  }, [user]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -56,9 +78,14 @@ const Header = () => {
           <>
             <div className="dropdown">
               <button className="dropdown__toggle">
-                <AiOutlineUser className="user__icon" size={30} />
+                {avatarUrl ? (
+                  <img src={avatarUrl} alt="User Avatar" className="user__avatar" /> 
+                ) : (
+                  <AiOutlineUser className="user__icon" size={30} /> 
+                )}
               </button>
               <div className="dropdown__menu">
+                <button className="dropdown__item">{username}</button>
                 <Link to="/fave">
                   <button className="dropdown__item">Favorites</button>
                 </Link>
