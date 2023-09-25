@@ -4,12 +4,16 @@ import '../App.scss';
 import { useState } from 'react';
 import { getDatabase, push, ref, update } from 'firebase/database';
 import { getStorage, ref as firebaseStorageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getAuth } from 'firebase/auth';
+import { ref as firebaseRef, get } from 'firebase/database';
 import { app } from '../firebase';
 import ImageUpload from './ImageUpload';
 import Header from './Header';
 
 const database = getDatabase(app);
 const storage = getStorage(app);
+const auth = getAuth();
+
 
 const RecipeSubmit = () => {
   const [title, setTitle] = useState('');
@@ -17,11 +21,36 @@ const RecipeSubmit = () => {
   const [ingredients, setIngredients] = useState('');
   const [instructions, setInstructions] = useState('');
   const [image, setImage] = useState(null);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newRecipeRef = push(ref(database, 'recipes'), { title, description, instructions, ingredients });
   
+    const user = auth.currentUser; 
+    
+    let userAvatar = '';
+    let username = '';
+  
+    if (user) {
+      const userRef = firebaseRef(database, 'users/' + user.uid);
+      const snapshot = await get(userRef);
+      if (snapshot.exists()) {
+        userAvatar = snapshot.val().avatar;
+        username = snapshot.val().username;
+      }
+    }
+    
+    const newRecipeData = {
+      title,
+      description,
+      instructions,
+      ingredients,
+      avatar: userAvatar, 
+      username
+    };
+    
+    const newRecipeRef = push(ref(database, 'recipes'), newRecipeData);
+    
     if (image) {
       const newStorageRef = firebaseStorageRef(storage, `images/${newRecipeRef.key}`);
       await uploadBytes(newStorageRef, image);
@@ -34,6 +63,8 @@ const RecipeSubmit = () => {
     setIngredients('');
     setInstructions('');
   };
+  
+  
 
   const onFileChange = (e) => {
     setImage(e.target.files[0]);

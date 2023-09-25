@@ -134,4 +134,3 @@ const RecipeCard = ({ currentPage, recipesPerPage, onPageChange }) => {
   );
 };
   export default RecipeCard;
-        

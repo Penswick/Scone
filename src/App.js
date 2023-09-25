@@ -6,6 +6,7 @@ import SearchPage from './pages/SearchPage';
 import Login from './pages/Login';
 import Fave from './pages/Fave';
 import RecipeSubmit from './components/RecipeSubmit';
+import UserAcc from './pages/UserAcc'
 import { FavoritesProvider } from './components/FavoritesContext';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/search/:query" element={<SearchPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/recipe-submit" element={<RecipeSubmit />} />
+          <Route path="/useracc" element={<UserAcc />} />
         </Routes>
       </FavoritesProvider>
     </Router>

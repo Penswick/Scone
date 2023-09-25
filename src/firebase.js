@@ -1,6 +1,6 @@
 
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, onValue, push } from 'firebase/database';
+import { getDatabase, ref, onValue, push, get } from 'firebase/database';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {

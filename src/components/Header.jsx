@@ -85,7 +85,9 @@ const Header = () => {
                 )}
               </button>
               <div className="dropdown__menu">
-                <button className="dropdown__item">{username}</button>
+                <Link to="/useracc">
+                  <button className="dropdown__item">{username}</button>
+                </Link>
                 <Link to="/fave">
                   <button className="dropdown__item">Favorites</button>
                 </Link>
